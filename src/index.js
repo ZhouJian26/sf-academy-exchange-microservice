@@ -18,9 +18,9 @@ const exchange_proto = grpc.loadPackageDefinition(packageDefinition).exchange;
 
 const extractData = (page) => {
   const $ = cheerio.load(page, { xmlMode: true });
-  const res = { EUR: 100 };
+  const res = { EUR: 1 };
   $("Cube Cube Cube").each((index, e) => {
-    res[e.attribs.currency] = parseFloat(e.attribs.rate) * 100;
+    res[e.attribs.currency] = parseFloat(e.attribs.rate);
   });
   return res;
 };
@@ -75,7 +75,7 @@ const exchange = (call, callback) => {
 
 const rates = (call, callback) => {
   getExchanges().then((exchanges) => {
-    callback(null, exchanges);
+    callback(null, { rates: exchanges });
   });
 };
 
