@@ -1,0 +1,24 @@
+{
+  "name": "sf-academy-exchange-microservice",
+  "version": "1.0.0",
+  "description": "sf-academy-exchange-microservice",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/zhoujian26/sf-academy-exchange-microservice.git"
+  },
+  "scripts": {
+    "test": "jest",
+    "start": "node src/index.js"
+  },
+  "author": "Zhou Jian",
+  "license": "MIT",
+  "dependencies": {
+    "@grpc/proto-loader": "^0.5.5",
+    "cheerio": "^1.0.0-rc.3",
+    "grpc": "^1.24.3"
+  },
+  "devDependencies": {
+    "jest": "^26.1.0"
+  }
+}
