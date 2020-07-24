@@ -1,4 +1,4 @@
-const PROTO_PATH = __dirname + "/sf-academy-proto/src/exchange.proto";
+const PROTO_PATH = __dirname + "/../sf-academy-proto/src/exchange.proto";
 
 const grpc = require("grpc");
 const protoLoader = require("@grpc/proto-loader");
@@ -16,7 +16,7 @@ const exchange_proto = grpc.loadPackageDefinition(packageDefinition).exchange;
     "localhost:9000",
     grpc.credentials.createInsecure()
   );
-  client.exchange({ value: 100, from: "EUR", to: "USD" }, (err, response) => {
+  client.rates({}, (err, response) => {
     if (err) console.log(err);
     console.log(response);
   });

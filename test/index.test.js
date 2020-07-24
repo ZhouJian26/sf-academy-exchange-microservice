@@ -46,9 +46,9 @@ test("Exchange self", () => {
     "localhost:9000",
     grpc.credentials.createInsecure()
   );
-  client.exchange({ value: 123, from: "USD", to: "USD" }, (err, response) => {
+  client.exchange({ value: 123.2, from: "USD", to: "USD" }, (err, response) => {
     expect(err).toBe(null);
-    expect(response.value).toBe(123);
+    expect(response.value).toBe("123.20");
   });
 });
 
