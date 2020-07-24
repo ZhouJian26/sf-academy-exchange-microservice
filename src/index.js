@@ -1,3 +1,4 @@
+"use strict";
 const PROTO_PATH = __dirname + "/../sf-academy-proto/src/exchange.proto";
 
 const grpc = require("grpc");
@@ -5,7 +6,7 @@ const protoLoader = require("@grpc/proto-loader");
 const https = require("https");
 const cheerio = require("cheerio");
 
-var packageDefinition = protoLoader.loadSync(PROTO_PATH, {
+const packageDefinition = protoLoader.loadSync(PROTO_PATH, {
   keepCase: true,
   longs: String,
   enums: String,
@@ -72,9 +73,18 @@ const exchange = (call, callback) => {
   });
 };
 
+const rates = (call, callback) => {
+  getExchanges().then((exchanges) => {
+    callback(null, exchanges);
+  });
+};
+
 (function main() {
   const server = new grpc.Server();
-  server.addService(exchange_proto.Exchange.service, { exchange: exchange });
+  server.addService(exchange_proto.Exchange.service, {
+    exchange: exchange,
+    rates: rates,
+  });
   server.bind("0.0.0.0:9000", grpc.ServerCredentials.createInsecure());
   server.start();
 })();
