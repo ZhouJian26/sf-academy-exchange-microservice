@@ -21,3 +21,13 @@ const exchange_proto = grpc.loadPackageDefinition(packageDefinition).exchange;
     console.log(response);
   });
 })();
+(function main() {
+  const client = new exchange_proto.Exchange(
+    "localhost:9000",
+    grpc.credentials.createInsecure()
+  );
+  client.exchange({ value: 1.35, from: "USD", to: "EUR" }, (err, response) => {
+    if (err) console.log(err);
+    console.log(response);
+  });
+})();

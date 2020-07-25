@@ -59,7 +59,6 @@ const exchange = (call, callback) => {
       message: "Missing value or currency",
     });
   getExchanges().then((exchanges) => {
-    //todo calcolo valuta
     const rate = (
       call.request.value *
       (exchanges[call.request.to] / exchanges[call.request.from])
