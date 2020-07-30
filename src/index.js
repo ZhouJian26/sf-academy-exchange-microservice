@@ -59,16 +59,19 @@ const exchange = (call, callback) => {
       message: "Missing value or currency",
     });
   getExchanges().then((exchanges) => {
-    const rate = (
+    const finalAmount = (
       call.request.value *
       (exchanges[call.request.to] / exchanges[call.request.from])
     ).toFixed(2);
-    if (rate == "NaN")
+    if (finalAmount == "NaN")
       return callback({
         code: grpc.status.INVALID_ARGUMENT,
         message: "Invalid currency",
       });
-    callback(null, { value: rate });
+    callback(null, {
+      value: finalAmount,
+      rate: exchanges[call.request.to] / exchanges[call.request.from],
+    });
   });
 };
 
