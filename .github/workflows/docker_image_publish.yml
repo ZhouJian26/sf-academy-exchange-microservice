@@ -15,5 +15,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
           registry: docker.pkg.github.com
-          repository: zhoujian26/sf-academy-api/sf-academy-api
+          repository: zhoujian26/sf-academy-exchange-microservice/sf-academy-exchange-microservice
           tag_with_ref: true
